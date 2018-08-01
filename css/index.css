@@ -3,6 +3,9 @@
     height: 180px;
 }
 
+.card{
+    width: 18rem;
+}
 
 .col-md-3{
     padding: 8px;
