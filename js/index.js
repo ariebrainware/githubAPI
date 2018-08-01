@@ -1,6 +1,5 @@
 const resultField= $('#result-field')
 let dataFollowers=[]
-let dataFollowersBio = ""
 const fetchData = ()=>{
     fetch('https://api.github.com/users/ariebrainware/followers')
     .then(response =>{
