@@ -1,20 +1,16 @@
-const resultField= $('#result-field')
-let dataFollowers=[]
-const fetchData = ()=>{
-    fetch('https://api.github.com/users/ariebrainware/followers')
-    .then(response =>{
-        return response.json()
-    })
-    .then(data =>{
-        dataFollowers = data
-                
-    })    
+const resultField = $('#result-field')
+// let dataFollowers=[]
+const fetchData = () => {
+    const apiURL = "https://api.github.com/users/ariebrainware/followers"
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(data => showData(data))
 }
 
-const template = (user) =>{  
+const template = (user) => {
     return `
     <div class="col-md-3">
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <img class="card-img-top avatar-img" src="${user.avatar_url}" alt="Profile image">
         <div class="card-body">
             <h5 class="card-title">${user.login}</h5>
@@ -26,16 +22,15 @@ const template = (user) =>{
     `
 }
 
-const showData = () =>{
+const showData = (data) => {
     resultField.html("")
-    dataFollowers.map((person,index) =>{
-        const card = template(person,index)
-
+    data.map((person) => {
+        const card = template(person)
         resultField.append(card)
     })
 }
 
-$(window).on('load',()=>{
+$(window).on('load', () => {
     fetchData()
-    setTimeout(showData,3000)
+
 })
